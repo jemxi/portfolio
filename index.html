@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Emmanuel Menor - Creative Developer</title>
+    <style>
+        :root {
+            --primary-color: #2a2a72;
+            --secondary-color: #009ffd;
+            --accent-color: #ff7f50;
+            --text-color: #333;
+            --light-color: #f8f9fa;
+            --dark-color: #1a1a2e;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            position: relative;
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            bottom: 5px;
+            right: -8px;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Main Content */
+        main {
+            margin-top: 70px;
+        }
+        
+        section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-left: 10%;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background-color: var(--primary-color);
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        
+        .glitch::before {
+            color: var(--secondary-color);
+            z-index: -1;
+            animation: glitch-animation 0.3s ease infinite;
+        }
+        
+        .glitch::after {
+            color: var(--accent-color);
+            z-index: -2;
+            animation: glitch-animation 0.3s ease reverse infinite;
+        }
+        
+        @keyframes glitch-animation {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-3px, 3px);
+            }
+            40% {
+                transform: translate(-3px, -3px);
+            }
+            60% {
+                transform: translate(3px, 3px);
+            }
+            80% {
+                transform: translate(3px, -3px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* About Section */
+        #about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .about-image img:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .bio-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .bio-info-item {
+            margin-bottom: 1rem;
+        }
+        
+        .bio-info-item span {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
+        
+        /* Skills */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .skills span {
+            padding: 8px 16px;
+            background-color: rgba(42, 42, 114, 0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .skills span:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Experience & Education */
+        .timeline-section {
+            padding: 5rem 5%;
+            background-color: rgba(248, 249, 250, 0.8);
+        }
+        
+        .timeline-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .timeline {
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background-color: var(--primary-color);
+            left: 7px;
+            top: 0;
+        }
+        
+        .timeline-item {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            left: 0;
+            top: 5px;
+        }
+        
+        .timeline-date {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-place {
+            font-size: 1rem;
+            font-style: italic;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Certifications */
+        .certifications {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .certification-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .certification-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .certification-content {
+            padding: 1.5rem;
+        }
+        
+        .certification-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .certification-issuer {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .certification-date {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        .certification-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .certification-link:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Projects */
+        #projects {
+            background-color: white;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .project {
+            position: relative;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .project::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            z-index: 1;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+        
+        .project:hover::before {
+            opacity: 0.9;
+        }
+        
+        .project-content {
+            position: absolute;
+            bottom: 0;
+            padding: 2rem;
+            z-index: 2;
+            color: white;
+            transform: translateY(20px);
+            opacity: 0.9;
+            transition: var(--transition);
+            width: 100%;
+        }
+        
+        .project:hover .project-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .project h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project p {
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        /* Contact */
+        #contact {
+            background-color: rgba(248, 249, 250, 0.8);
+        }
+        
+        #contact h2 {
+            text-align: center;
+            width: 100%;
+        }
+        
+        #contact h2::after {
+            left: 25%;
+        }
+        
+        #contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            transition: var(--transition);
+            color: #777;
+            pointer-events: none;
+        }
+        
+        .form-group input:focus ~ label,
+        .form-group textarea:focus ~ label,
+        .form-group input:valid ~ label,
+        .form-group textarea:valid ~ label {
+            top: -10px;
+            left: 10px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            background-color: white;
+            padding: 0 5px;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            #about {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            nav {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                height: auto;
+                padding-top: 150px;
+                padding-bottom: 100px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+            
+            .bio-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Personal Portfolio</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <h1 class="glitch" data-text="John Emmanuel Menor">John Emmanuel Menor</h1>
+            <p class="subtitle">Creative Developer & Digital Craftsman</p>
+            <p>Crafting digital experiences that inspire and engage users through innovative web solutions.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn">View My Work</a>
+                <a href="#contact" class="btn btn-outline">Let's Connect</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="about-content">
+                <h2>About Me</h2>
+                <p>I'm a passionate web developer with a keen eye for design. My expertise lies in creating seamless, user-centric digital experiences that blend form and function. I believe in crafting solutions that not only look good but provide real value to users.</p>
+                
+                <div class="bio-info">
+                    <div class="bio-info-item">
+                        <span>Name:</span> John Emmanuel Menor
+                    </div>
+                    <div class="bio-info-item">
+                        <span>Email:</span> azjohnemmanuel@gmail.com
+                    </div>
+                    <div class="bio-info-item">
+                        <span>Location:</span> Philippines
+                    </div>
+                    <div class="bio-info-item">
+                        <span>Available:</span> Freelance & Full-time
+                    </div>
+                </div>
+                
+                <p class="objective">My professional objective is to leverage my technical skills and creative thinking to build innovative web solutions that solve real-world problems while delivering exceptional user experiences.</p>
+                
+                <h3>My Skills</h3>
+                <div class="skills">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                    <span>MySQL</span>
+                    <span>PHP</span>
+                    <span>UI/UX Design</span>
+                    <span>Responsive Design</span>
+                    <span>Web Accessibility</span>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="received_713294337239882.jpeg" alt="John Emmanuel Menor">
+            </div>
+        </section>
+
+        <section id="experience" class="timeline-section">
+            <h2>My Journey</h2>
+            <div class="timeline-container">
+                <div>
+                    <h3>Work Experience</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2025 - Present</div>
+                            <div class="timeline-title">Web Developer</div>
+                            <div class="timeline-place">Creative Digital Agency</div>
+                            <div class="timeline-description">
+                                Designing and developing responsive websites for clients across various industries. Working with HTML, CSS, JavaScript, and PHP to create custom web solutions.
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022 - 2024</div>
+                            <div class="timeline-title">Frontend Developer Intern</div>
+                            <div class="timeline-place">Our Lady of the Sacred Heart college of Guimba, Inc.</div>
+                            <div class="timeline-description">
+                                Assisted in the development of user interfaces for web applications, implementing designs and improving user experience.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Education</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022 - 2026</div>
+                            <div class="timeline-title">Bachelor of Science in Information Technology</div>
+                            <div class="timeline-place">Our Lady of the Sacred Heart College of Guimba, Inc.</div>
+                            <div class="timeline-description">
+                                Specialized in Web Development and Design.
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2016 - 2022</div>
+                            <div class="timeline-title">Associate Degree in Information and Communications Technology</div>
+                            <div class="timeline-place">Ramos National High School</div>
+                            <div class="timeline-description">
+                                Learned fundamental programming concepts and web technologies.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+   
+       
+        <section id="certifications">
+            <h2>Certifications</h2>
+            <div class="certifications">
+                <div class="certification-item">
+                    <div class="certification-content">
+                        <div class="certification-title">Understanding the EU Cyber Resilience Act CRA</div>
+                        <div class="certification-issuer">Linux Foundation (LFEL1001)</div>
+                        <div class="certification-date">Issued: July 07, 2025</div>
+                        <div class="certification-date">Certificate ID: LF-rwrya57awz</div>
+                        <a href="eu.pdf" target="_blank" class="certification-link">View Certificate</a>
+                    </div>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-content">
+                        <div class="certification-title">Automating Supply Chain Security: SBOMs and Signatures</div>
+                        <div class="certification-issuer">Linux Foundation (LFEL1007)</div>
+                        <div class="certification-date">Issued: July 07, 2025</div>
+                        <div class="certification-date">Certificate ID: LF-zehazbdim2</div>
+                        <a href="ascs.pdf" target="_blank" class="certification-link">View Certificate</a>
+                    </div>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-content">
+                        <div class="certification-title">Developing Secure Software</div>
+                        <div class="certification-issuer">Linux Foundation (LFD121)</div>
+                        <div class="certification-date">Issued: July 08, 2025</div>
+                        <div class="certification-date">Certificate ID: LF0qbginjpr0</div>
+                        <a href="dss.pdf" target="_blank" class="certification-link">View Certificate</a>
+                    </div>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-content">
+                        <div class="certification-title">Introduction to Zero Trust</div>
+                        <div class="certification-issuer">Linux Foundation (LFS183)</div>
+                        <div class="certification-date">Issued: July 05, 2025</div>
+                        <div class="certification-date">Certificate ID: LF58g0ubxu9f</div>
+                        <a href="izt.pdf" target="_blank" class="certification-link">View Certificate</a>
+                    </div>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-content">
+                        <div class="certification-title">Cybersecurity Essentials</div>
+                        <div class="certification-issuer">Linux Foundation (LFC108)</div>
+                        <div class="certification-date">Issued: September 18, 2024</div>
+                        <div class="certification-date">Certificate ID: LF-aszltrb7a8</div>
+                        <a href="ce.pdf" target="_blank" class="certification-link">View Certificate</a>
+                    </div>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-content">
+                        <div class="certification-title">Introduction to DevSecOps for Managers</div>
+                        <div class="certification-issuer">Linux Foundation (LFS180)</div>
+                        <div class="certification-date">Issued: July 07, 2025</div>
+                        <div class="certification-date">Certificate ID: LF-xrngytwdvk</div>
+                        <a href="dso.pdf" target="_blank" class="certification-link">View Certificate</a>
+                    </div>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-content">
+                        <div class="certification-title">Understanding the OWASP® Top 10 Security Threats</div>
+                        <div class="certification-issuer">Linux Foundation (SKF100)</div>
+                        <div class="certification-date">Issued: July 07, 2025</div>
+                        <div class="certification-date">Certificate ID: LF-es5r9gix83</div>
+                        <a href="owasp.pdf" target="_blank" class="certification-link">View Certificate</a>
+                    </div>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-content">
+                        <div class="certification-title">Securing Projects with OpenSSF Scorecard</div>
+                        <div class="certification-issuer">Linux Foundation (LFEL1006)</div>
+                        <div class="certification-date">Issued: July 07, 2025</div>
+                        <div class="certification-date">Certificate ID: LF-ehfnej4pdn</div>
+                        <a href="spo.pdf" target="_blank" class="certification-link">View Certificate</a>
+                    </div>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-content">
+                        <div class="certification-title">Security for Software Development Managers</div>
+                        <div class="certification-issuer">Linux Foundation (LFD125)</div>
+                        <div class="certification-date">Issued: 2025</div>
+                        <a href="ssdm.pdf" target="_blank" class="certification-link">View Certificate</a>
+                    </div>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-content">
+                        <div class="certification-title">XSS Exploits and Defenses</div>
+                        <div class="certification-issuer">Linux Foundation (LFEL1010)</div>
+                        <div class="certification-date">Issued: 2025</div>
+                        <a href="xss.pdf" target="_blank" class="certification-link">View Certificate</a>
+                    </div>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-content">
+                        <div class="certification-title">Securing Your Software Supply Chain with Sigstore</div>
+                        <div class="certification-issuer">Linux Foundation (LFS182)</div>
+                        <div class="certification-date">Issued: 2025</div>
+                        <a href="sssc.pdf" target="_blank" class="certification-link">View Certificate</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project" style="background-image: url('wastewise.png')">
+                    <div class="project-content">
+                        <h3>E-commerce Website</h3>
+                        <p>A fully responsive e-commerce platform with PHP backend and MySQL database integration.</p>
+                        <a href="wastewise.png" class="btn" target="_blank">View Project</a>
+                    </div>
+                </div>
+                <div class="project" style="background-image: url('web\ design.png')">
+                    <div class="project-content">
+                        <h3>Portfolio Design</h3>
+                        <p>A creative portfolio template designed for photographers and visual artists.</p>
+                        <a href="web design.png" class="btn" target="_blank">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" required>
+                    <label for="name">Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" required></textarea>
+                    <label for="message">Message</label>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/jemxi/E-commerce" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/menor-john-emmanuel-s-562a18311/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.behance.net/asongnaglalaro" target="_blank" rel="noopener noreferrer">Behance</a>
+          
+        </div>
+        <p>&copy; 2025 John Emmanuel Menor. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simple form validation
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                if (name && email && message) {
+                    // In a real implementation, you would send the form data to a server
+                    alert('Thank you for your message! I will get back to you soon.');
+                    contactForm.reset();
+                }
+            });
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Simple scroll animation for elements
+        const observeElements = document.querySelectorAll('section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observeElements.forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
